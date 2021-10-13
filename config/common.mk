@@ -108,6 +108,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_PACKAGES += \
     libjni_latinimegoogle
 
+# Enable support of one-handed mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.support_one_handed_mode=true
+
 # Immersive Navigation
 #PRODUCT_PACKAGES += \
 #    ImmersiveNavigationOverlay
