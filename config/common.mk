@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Gapps
-#$(call inherit-product, vendor/aosp/config/gapps.mk)
+$(call inherit-product, vendor/aosp/config/gapps.mk)
 
 include vendor/aosp/config/version.mk
 
@@ -48,7 +48,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Exclude RRO Enforcement
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS +=  \
-    vendor/aosp/overlay
+    vendor/aosp/overlay/common
 
 # Enable one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -96,8 +96,8 @@ PRODUCT_PACKAGES += \
     QuickAccessWallet
 
 # Config
-#PRODUCT_PACKAGES += \
-#    SimpleDeviceConfig
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
 
 # Cutout control overlays
 #PRODUCT_PACKAGES += \
@@ -203,7 +203,7 @@ PRODUCT_PACKAGES += \
 #endif
 
 # Selinux
-SELINUX_IGNORE_NEVERALLOWS ?= true
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # StichImage
 #PRODUCT_PACKAGES += \
@@ -212,8 +212,10 @@ SELINUX_IGNORE_NEVERALLOWS ?= true
 # ThemeOverlays
 include packages/overlays/Themes/themes.mk
 
+ifneq ($(WITH_GAPPS),true)
 PRODUCT_PACKAGES += \
     ThemePicker
+endif
 
 # Recommend using the non debug dexpreopter
 USE_DEX2OAT_DEBUG := false
